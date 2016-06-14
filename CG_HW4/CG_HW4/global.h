@@ -1,0 +1,14 @@
+const float PI = 3.141592653;
+const int N = 20;
+const int M = 10;
+const float HEIGHT = 60;
+const float MAZE_XRANGE = 1500;
+const float MAZE_ZRANGE = 1500;
+const float MAZE_YRANGE = 1500;
+const float MAZE_LX = -MAZE_XRANGE / 2;
+const float MAZE_RX = -MAZE_LX + MAZE_XRANGE;
+const float MAZE_LZ = 0;
+const float MAZE_RZ = MAZE_LZ + MAZE_ZRANGE;
+const float MAZE_LY = -MAZE_YRANGE / 2;
+const float MAZE_RY = -MAZE_LY + MAZE_YRANGE;
+const int MAZESIZE = 35;
