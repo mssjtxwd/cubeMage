@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F261C15F-2A7C-4FC2-8D23-F610355D0C9D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ShadowMapping</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)_Bin\$(Platform)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)_Libs;$(SolutionDir)_Libs\glew-1.11.0\include;$(SolutionDir)_Libs\glfw-3.0.4\include;$(SolutionDir)_Libs\freeglut-2.8.1\include;$(SolutionDir)_Libs\glm-0.9.6.1\include;$(SolutionDir)_Libs\bullet-2.82\include;$(SolutionDir)_Libs\DevIL-1.7.8\include;$(SolutionDir)_Libs\vcglib\include;$(SolutionDir)_Libs\ftgl-2.1.3\include;$(SolutionDir)_Libs\freetype-2.5.4\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)_Libs;$(SolutionDir)_Libs\glew-1.11.0\lib;$(SolutionDir)_Libs\glfw-3.0.4\lib;$(SolutionDir)_Libs\freeglut-2.8.1\lib;$(SolutionDir)_Libs\bullet-2.82\lib;$(SolutionDir)_Libs\DevIL-1.7.8\lib;$(SolutionDir)_Libs\ftgl-2.1.3\lib;$(SolutionDir)_Libs\freetype-2.5.4\lib;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)_Bin\$(Platform)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)_Libs;$(SolutionDir)_Libs\glew-1.11.0\include;$(SolutionDir)_Libs\glfw-3.0.4\include;$(SolutionDir)_Libs\freeglut-2.8.1\include;$(SolutionDir)_Libs\glm-0.9.6.1\include;$(SolutionDir)_Libs\bullet-2.82\include;$(SolutionDir)_Libs\DevIL-1.7.8\include;$(SolutionDir)_Libs\vcglib\include;$(SolutionDir)_Libs\ftgl-2.1.3\include;$(SolutionDir)_Libs\freetype-2.5.4\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)_Libs;$(SolutionDir)_Libs\glew-1.11.0\lib;$(SolutionDir)_Libs\glfw-3.0.4\lib;$(SolutionDir)_Libs\freeglut-2.8.1\lib;$(SolutionDir)_Libs\bullet-2.82\lib;$(SolutionDir)_Libs\DevIL-1.7.8\lib;$(SolutionDir)_Libs\ftgl-2.1.3\lib;$(SolutionDir)_Libs\freetype-2.5.4\lib;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)_Bin\$(Platform)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)_Libs;$(SolutionDir)_Libs\glew-1.11.0\include;$(SolutionDir)_Libs\glfw-3.0.4\include;$(SolutionDir)_Libs\freeglut-2.8.1\include;$(SolutionDir)_Libs\glm-0.9.6.1\include;$(SolutionDir)_Libs\bullet-2.82\include;$(SolutionDir)_Libs\DevIL-1.7.8\include;$(SolutionDir)_Libs\vcglib\include;$(SolutionDir)_Libs\ftgl-2.1.3\include;$(SolutionDir)_Libs\freetype-2.5.4\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)_Libs;$(SolutionDir)_Libs\glew-1.11.0\lib;$(SolutionDir)_Libs\glfw-3.0.4\lib;$(SolutionDir)_Libs\freeglut-2.8.1\lib;$(SolutionDir)_Libs\bullet-2.82\lib;$(SolutionDir)_Libs\DevIL-1.7.8\lib;$(SolutionDir)_Libs\ftgl-2.1.3\lib;$(SolutionDir)_Libs\freetype-2.5.4\lib;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)_Bin\$(Platform)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)_Libs;$(SolutionDir)_Libs\glew-1.11.0\include;$(SolutionDir)_Libs\glfw-3.0.4\include;$(SolutionDir)_Libs\freeglut-2.8.1\include;$(SolutionDir)_Libs\glm-0.9.6.1\include;$(SolutionDir)_Libs\bullet-2.82\include;$(SolutionDir)_Libs\DevIL-1.7.8\include;$(SolutionDir)_Libs\vcglib\include;$(SolutionDir)_Libs\ftgl-2.1.3\include;$(SolutionDir)_Libs\freetype-2.5.4\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)_Libs;$(SolutionDir)_Libs\glew-1.11.0\lib;$(SolutionDir)_Libs\glfw-3.0.4\lib;$(SolutionDir)_Libs\freeglut-2.8.1\lib;$(SolutionDir)_Libs\bullet-2.82\lib;$(SolutionDir)_Libs\DevIL-1.7.8\lib;$(SolutionDir)_Libs\ftgl-2.1.3\lib;$(SolutionDir)_Libs\freetype-2.5.4\lib;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="cubeMage.cpp" />
+    <ClCompile Include="mage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="global.h" />
+    <ClInclude Include="gl_staff.h" />
+    <ClInclude Include="mage.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

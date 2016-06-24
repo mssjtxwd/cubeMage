@@ -12,7 +12,8 @@
 using namespace std;
 #pragma comment ( lib, "glaux.lib" )
 
-
+#define WINDOW_W 800
+#define WINDOW_H 800
 
 float current_x=MAZE_LX + MAZE_XRANGE / 2 + MAZE_XRANGE / N / 2;
 float current_y=HEIGHT/2;
@@ -30,6 +31,7 @@ public:
 	int yPlane[MAZESIZE][MAZESIZE][MAZESIZE];
 	int zPlane[MAZESIZE][MAZESIZE][MAZESIZE];
 } maze;
+bool mouseRightButtonDown = false;
 class Wall
 {
 public:
@@ -42,6 +44,9 @@ public:
 
 };
 vector<Wall> walls;
+struct Point {
+	int x,y;
+};
 
 bool loadTexture()
 {
@@ -187,9 +192,57 @@ void TimerFunction(int value)
 	glutPostRedisplay();
 	glutTimerFunc(30, TimerFunction, value - 1);
 }
+bool check(int x,int y,int z) {
+	int i = (x - MAZE_LX) / (MAZE_XRANGE / N);
+	int j = (y - MAZE_LY) / (MAZE_YRANGE / N);
+	int k = (z - MAZE_LZ) / (MAZE_ZRANGE / N);
+	const int EPS = 1;
+	if (maze.xPlane[i][j][k] && (x - int(MAZE_LX)) % (int(MAZE_XRANGE) / N) <= EPS) return false;
+	if (maze.xPlane[i+1][j][k] && (x - int(MAZE_LX)) % (int(MAZE_XRANGE) / N) >= MAZE_XRANGE / N - EPS) return false;
+	if (maze.yPlane[j][i][k] && (y - int(MAZE_LY)) % (int(MAZE_YRANGE) / N) <= EPS) return false;
+	if (maze.yPlane[j+1][i][k] && (y - int(MAZE_LY)) % (int(MAZE_YRANGE) / N) >= MAZE_YRANGE / N - EPS) return false;
+	if (maze.zPlane[k][i][j] && (z - int(MAZE_LZ)) % (int(MAZE_ZRANGE) / N) <= EPS) return false;
+	if (maze.zPlane[k+1][i][j] && (z - int(MAZE_LZ)) % (int(MAZE_ZRANGE) / N) >= MAZE_ZRANGE / N - EPS) return false;
+	return true;
+}
 void keyboard(unsigned char key,int x,int y)
 {
-	if (key == 'z') {
+	float old_x = current_x;
+	float old_z = current_z;
+	const float RANGE = 1;
+	float h = RANGE*sinf(mElevaAngle * PI / 180.0f);
+	float w = RANGE;//RANGE*cosf(mElevaAngle * PI / 180.0f);
+	float v = 2;
+	if( key == 'w'   )  {
+		current_x += v*w*sinf( mRotate * PI / 180.0f );
+		current_z += v*w*cosf( mRotate * PI / 180.0f );
+		if (!check(current_x,current_y,current_z)) {
+			cout<<"not right"<<endl;
+			current_x = old_x;
+			current_z = old_z;
+		}
+		//current_y += v*h;
+
+	}
+	else if( key == 's' )  {
+		current_x -= v / 2 * w*sinf( mRotate * PI / 180.0f );
+		current_z -= v / 2 * w*cosf( mRotate * PI / 180.0f );
+		if (!check(current_x,current_y,current_z)) {
+			cout<<"not right"<<endl;
+			current_x = old_x;
+			current_z = old_z;
+		}
+		//current_y -= v / 2 * h;
+	}
+	else if( key == 'a' )  {
+		mRotate += 5;
+		if(mRotate>360) mRotate-360;
+	}
+	else if( key == 'd' )  {
+		mRotate -= 5;
+		if(mRotate>360) mRotate-360;
+	}
+	else if (key == 'z') {
 		mElevaAngle += 2;
 	}
 	else if (key == 'x') {
@@ -203,44 +256,58 @@ void keyboard(unsigned char key,int x,int y)
 }
 void placeControl(int key,int x,int y)
 {
-	float old_x = current_x;
-	float old_z = current_z;
-	const float RANGE = 1;
-	float h = RANGE*sinf(mElevaAngle * PI / 180.0f);
-	float w = RANGE*cosf(mElevaAngle * PI / 180.0f);
-	if( key == GLUT_KEY_UP   )  {
-		current_x += w*sinf( mRotate * PI / 180.0f );
-		current_z += w*cosf( mRotate * PI / 180.0f );
-		current_y += h;
 
-	}
-	if( key == GLUT_KEY_DOWN )  {
-		current_x -= w*sinf( mRotate * PI / 180.0f );
-		current_z -= w*cosf( mRotate * PI / 180.0f );
-		current_y -= h;
-	}
-	if( key == GLUT_KEY_LEFT )  {
-		mRotate += 2;
-		if(mRotate>=360) mRotate-360;
-	}
-	if( key == GLUT_KEY_RIGHT )  {
-		mRotate -= 2;
-		if(mRotate>=360) mRotate-360;
-	}
-	for( int i=0; i<walls.size(); i++ )  
-	{
-		int x1 = walls[i].x1,z1 = walls[i].z1,x2 = walls[i].x2,z2 = walls[i].z2;
-		if(current_x<=x2+1 && current_x>=x1-1 && current_z<=z2+1 && current_z>=z1-1)
-		{
-			//printf("!!!");
-			//current_x = old_x;
-			//current_z = old_z;
-			break;
+}
+Point oldRightMouse = {-1,-1};
+void mouseClickEvtListen(int button, int state, int x, int y) {
+	if (button == GLUT_RIGHT_BUTTON) {
+		if (state == GLUT_DOWN) {
+			mouseRightButtonDown = true;
+			oldRightMouse.x = x;
+			oldRightMouse.y = y;
+			cout<<"right mouse is clicked; mouseRightButtonDown = true now"<<endl;
 		}
+		else {
+			mouseRightButtonDown = false;
+			oldRightMouse.x = -1;
+			oldRightMouse.y = -1;
+			cout<<"right mouse is released; mouseRightButtonDown = false now"<<endl;
+		}
+	}
+}
+
+void mouseMoveEvtListen(int x,int y) {
+	if (mouseRightButtonDown == true) {
+		if (oldRightMouse.x == -1 && oldRightMouse.y == -1) {
+			//nothing
+		}
+		else {
+			cout<<"right mouse has been clicked; and oldRightMouse are not -1 now"<<endl;
+			float dx = x - oldRightMouse.x;
+			float dy = y - oldRightMouse.y;
+			cout<<"old_x = "<<oldRightMouse.x<<" old_y = "<<oldRightMouse.y<<endl;
+			cout<<"x = "<<x<<" y = "<<y<<endl;
+			cout<<"dx = "<<dx<<" dy = "<<dy<<endl;
+
+			float flag = lookAtUpY > 0 ? -1 : 1;
+
+			mRotate -= flag * dx / (WINDOW_W) * 90; 
+
+			if (mRotate > 360) mRotate -=360;
+			else if (mRotate < -360) mRotate+=360;
+
+			mElevaAngle -= flag * dy / (WINDOW_H) * 90; 
+
+			if (mElevaAngle > 360) mElevaAngle -=360;
+			else if (mElevaAngle < -360) mElevaAngle+=360;
+
+			oldRightMouse.x = x;
+			oldRightMouse.y = y;
+		}
+		
 	}
 	glutPostRedisplay();
 }
-
 void makeMaze(const int n)
 {
 	srand(time(NULL));
@@ -303,6 +370,8 @@ int main(int argc,char *argv[])
 	init();
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keyboard);
+	glutMouseFunc(mouseClickEvtListen);
+	glutMotionFunc(mouseMoveEvtListen);
 	glutSpecialFunc(placeControl);
 	glutIdleFunc(idleFunction);
 	glutReshapeFunc(reshape);
