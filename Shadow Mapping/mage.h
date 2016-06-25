@@ -39,6 +39,7 @@ public:
 	void drawTexture();
 
 	bool g;
+	bool startCheckCrack;
 	bool check(glm::mat4& mat_view);
 	bool checkCrack(glm::vec3 pos);
 };

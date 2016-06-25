@@ -162,6 +162,7 @@ Wall Wall::wallFac(WCHAR type,glm::vec2 v1,glm::vec2 v2,GLfloat plane,GLfloat th
 Maze::Maze()
 {
 	//freopen("log.txt","w",stdout);
+	startCheckCrack = false;
 	size = MAZE_SIZE;
 	n = N;
 	cellSize = size / n;
@@ -314,14 +315,14 @@ bool Maze::checkCrack(glm::vec3 pos)
 	glm::vec3 idx = getIdx(pos);
 	int x = idx.x,y = idx.y,z = idx.z;
 	bool ret = false;
-	if (xPlane[x][y][z] >= 0) ret|= walls[xPlane[x][y][z]].includ(pos);
-	if (xPlane[x+1][y][z] >= 0) ret|= walls[xPlane[x+1][y][z]].includ(pos);
+	if (xPlane[x][y][z] >= 0 && xPlane[x][y][z]<walls.size()) ret|= walls[xPlane[x][y][z]].includ(pos);
+	if (xPlane[x+1][y][z] >= 0 && xPlane[x+1][y][z]<walls.size()) ret|= walls[xPlane[x+1][y][z]].includ(pos);
 
-	if (yPlane[y][x][z] >= 0) ret |= walls[yPlane[y][x][z]].includ(pos);
-	if (yPlane[y+1][x][z] >= 0) ret |= walls[yPlane[y+1][x][z]].includ(pos);
+	if (yPlane[y][x][z] >= 0 && yPlane[y][x][z]<walls.size()) ret |= walls[yPlane[y][x][z]].includ(pos);
+	if (yPlane[y+1][x][z] >= 0 && yPlane[y+1][x][z]<walls.size()) ret |= walls[yPlane[y+1][x][z]].includ(pos);
 
-	if (zPlane[z][x][y] >= 0) ret|= walls[zPlane[z][x][y]].includ(pos);
-	if (zPlane[z+1][x][y] >= 0) ret|= walls[zPlane[z+1][x][y]].includ(pos);
+	if (zPlane[z][x][y] >= 0 && zPlane[z][x][y]<walls.size()) ret|= walls[zPlane[z][x][y]].includ(pos);
+	if (zPlane[z+1][x][y] >= 0 && zPlane[z+1][x][y]<walls.size()) ret|= walls[zPlane[z+1][x][y]].includ(pos);
 
 	return ret;
 }

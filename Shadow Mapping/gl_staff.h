@@ -361,7 +361,7 @@ namespace Internal {
 			}
 			glm::mat4 viewModel = inverse(glStaff::get_mat_view());
 			glm::vec3 pos(viewModel[3]);
-			if (maze.checkCrack(pos)) {
+			if (maze.checkCrack(pos) && maze.startCheckCrack) {
 				cout<<"撞墙"<<endl;
 				mat_view = old_mat_view;
 			}

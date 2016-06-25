@@ -1,0 +1,4 @@
+下载VCGlib，将doxyfile-all-from-bullet拷贝到 vcglib\docs\Doxygen，
+
+下载并安装Doxygen和Graphviz，之后将“Graphviz安装目录\Graphviz2.36\bin”添加到环境变量Path；
+打开Doxygen，从“文件”菜单打开Bullet包下的Doxyfile文件，之后点击run。

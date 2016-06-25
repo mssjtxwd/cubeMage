@@ -18,12 +18,24 @@
     <ClInclude Include="gl_staff.h">
       <Filter>head files</Filter>
     </ClInclude>
+    <ClInclude Include="tga.h">
+      <Filter>head files</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>head files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cubeMage.cpp">
       <Filter>cpp files</Filter>
     </ClCompile>
     <ClCompile Include="mage.cpp">
+      <Filter>cpp files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>cpp files</Filter>
+    </ClCompile>
+    <ClCompile Include="tga.cpp">
       <Filter>cpp files</Filter>
     </ClCompile>
   </ItemGroup>

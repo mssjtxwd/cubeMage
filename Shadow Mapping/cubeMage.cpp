@@ -7,7 +7,7 @@
 #include <iostream>
 #include "mage.h"
 #include "global.h"
-
+#include "Object.h"
 /*
  glActiveTexture(GL_TEXTURE0) 普通贴图
  glActiveTexture(GL_TEXTURE1) 阴影纹理
@@ -23,7 +23,7 @@ const int shadow_w=2048, shadow_h=2048;
 glm::vec4 light_pos[LIGHTS_NUM]; // 世界坐标
 bool light_rotate=false, save_stencil=false;
 static FTFont* ftgl;
-//Object chess[LIGHTS_NUM];
+Object *chess;
 void tex_init()
 {
 	glActiveTexture(GL_TEXTURE0); // 普通贴图
@@ -38,6 +38,8 @@ void tex_init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+	chess = new Object[LIGHTS_NUM];
 
 	glActiveTexture(GL_TEXTURE1); // 阴影纹理
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -76,6 +78,7 @@ void xoy_foor(float len, float tex_repeat, int subdivision)
 	GLfloat color[]={.8f, 0.8f, 0.8f, 1};
 	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, color);
 	
+	glBindTexture(GL_TEXTURE_2D, tex_walls);
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glScalef(len, len, 1);
@@ -127,6 +130,7 @@ void draw_world()
 void draw_model()
 {	
 	maze.draw();
+	chess[0].draw(8,8,8,0.1);
 	/*
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
@@ -345,8 +349,16 @@ void key_c()//reverse
 
 void key_g()//reverse
 {
-	grav = true;
-	cout<<"grav is begining..."<<endl;
+	grav = !grav;
+	if (grav) cout<<"grav has been opened."<<endl;
+	else cout<<"grav has been closed"<<endl;
+}
+
+void key_r()
+{
+	maze.startCheckCrack = !maze.startCheckCrack;
+	if (maze.startCheckCrack) cout<<"maze.startCheckCrack has been opened."<<endl;
+	else cout<<"maze.startCheckCrack has been closed"<<endl;
 }
 
 int main(void)
@@ -387,7 +399,8 @@ int main(void)
 	glStaff::add_key_callback('U', key_u, L"保存阴影图（d.png）");
 	glStaff::add_key_callback('T', key_t, L"保存光源位置");
 	glStaff::add_key_callback('C', key_c, L"倒转");
-	glStaff::add_key_callback('G', key_g, L"开启重力");
+	glStaff::add_key_callback('G', key_g, L"开关重力");
+	glStaff::add_key_callback('R', key_g, L"开关碰撞检测");
 	tex_init();
 	
 	ftgl = new FTExtrudeFont("C:\\Windows\\Fonts\\Arial.ttf");

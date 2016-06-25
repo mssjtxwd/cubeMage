@@ -161,11 +161,15 @@
   <ItemGroup>
     <ClCompile Include="cubeMage.cpp" />
     <ClCompile Include="mage.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="tga.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="global.h" />
     <ClInclude Include="gl_staff.h" />
     <ClInclude Include="mage.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="tga.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
